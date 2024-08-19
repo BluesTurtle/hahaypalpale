@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yuk nonton vinnn plsss</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffcce6;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 400px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        h1 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            margin: 5px;
+            position: relative;
+            width: calc(50% - 10px);
+            background-color: #ff99cc;
+            color: #ffffff;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ff66b2;
+        }
+        #noButton {
+            background-color: #ff66b2;
+        }
+        #gif, #gif2 {
+            display: none; /* Initially hidden */
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 20px;
+        }
+        .rain {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .rain img {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            pointer-events: none;
+            animation: fall 1s linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AYO ALVINAAA NONTON IT ENDS WITH US</h1>
+        <form>
+            <button type="button" class="yes" id="yesButton">Yes</button>
+            <button type="button" id="noButton">No</button>
+        </form>
+        <!-- GIF file located in the same folder -->
+        <img id="gif" src="cat-begging.gif" alt="Surprise GIF">
+        <img id="gif2" src="cat-cute.gif" alt="New Surprise GIF">
+        <div class="rain" id="rain">
+            <!-- Replace with your heart image or other images for the rain effect -->
+            <img src="flower.png" alt="flower">
+        </div>
+    </div>
+    <script>
+        document.getElementById('noButton').addEventListener('mouseover', function() {
+            const button = this;
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+
+            // Calculate the container dimensions
+            const container = button.closest('.container');
+            const containerRect = container.getBoundingClientRect();
+            const containerWidth = containerRect.width;
+            const containerHeight = containerRect.height;
+
+            // Calculate max positions to keep the button within the container
+            const margin = 10;
+            const maxX = containerWidth - buttonWidth - margin;
+            const maxY = containerHeight - buttonHeight - margin;
+
+            let randomX, randomY;
+
+            // Continuously calculate new positions until the button moves to a valid spot
+            do {
+                randomX = Math.random() * maxX;
+                randomY = Math.random() * maxY;
+            } while (
+                Math.abs(button.offsetLeft - randomX) < buttonWidth &&
+                Math.abs(button.offsetTop - randomY) < buttonHeight
+            );
+
+            // Set button position
+            button.style.position = 'absolute';
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        });
+
+        document.getElementById('noButton').addEventListener('mouseover', function() {
+            document.getElementById('gif').style.display = 'block';
+        });
+
+        document.getElementById('yesButton').addEventListener('mouseover', function() {
+            document.getElementById('gif').style.display = 'none';
+            document.getElementById('gif2').style.display = 'block';
+            const rain = document.getElementById('rain');
+            const totalHearts = 30; // Number of hearts in the rain effect
+
+            // Create rain effect
+            for (let i = 0; i < totalHearts; i++) {
+                const heart = document.createElement('img');
+                heart.src = 'flower.png'; // Replace with your heart image
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.animationDuration = `${Math.random() * 2 + 2}s`; // Random duration between 2s and 4s
+                rain.appendChild(heart);
+            }
+
+            // Redirect after 10 seconds
+            setTimeout(function() {
+                window.location.href = 'https://wa.me/6289509814986?text=iyaaa%2C%20aku%20';
+            }, 3000); // 10 seconds delay
+        });
+    </script>
+</body>
+</html>
