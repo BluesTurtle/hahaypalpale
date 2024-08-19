@@ -67,6 +67,7 @@
             pointer-events: none;
             overflow: hidden;
             z-index: 1;
+            display: none; /* Hide rain effect initially */
         }
         .rain img {
             position: absolute;
@@ -129,16 +130,24 @@
             button.style.position = 'absolute';
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
-        });
-
-        document.getElementById('noButton').addEventListener('mouseover', function() {
+            
+            // Show gif
             document.getElementById('gif').style.display = 'block';
         });
 
         document.getElementById('yesButton').addEventListener('mouseover', function() {
             document.getElementById('gif').style.display = 'none';
             document.getElementById('gif2').style.display = 'block';
+            
             const rain = document.getElementById('rain');
+            rain.style.display = 'block'; // Show rain effect
+            document.getElementById('noButton').style.display = 'none';
+            
+            // Remove existing hearts
+            while (rain.firstChild) {
+                rain.removeChild(rain.firstChild);
+            }
+
             const totalHearts = 30; // Number of hearts in the rain effect
 
             // Create rain effect
@@ -151,10 +160,10 @@
                 rain.appendChild(heart);
             }
 
-            // Redirect after 10 seconds
+            // Redirect after 3 seconds
             setTimeout(function() {
-                window.location.href = 'https://wa.me/6289509814986?text=iyaaa%2C%20aku%20';
-            }, 3000); // 10 seconds delay
+                window.location.href = 'https://wa.me/6289509814986?text=iyaaa%2C%20aku%20mau';
+            }, 2500); // 3 seconds delay
         });
     </script>
 </body>
